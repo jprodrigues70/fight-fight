@@ -1,0 +1,9 @@
+.container.full-bg {
+  min-height: 600px;
+}
+.enemy {
+  transform: scale(-1, 1);
+}
+.person {
+  height: 120px;
+}
