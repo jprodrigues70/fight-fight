@@ -122,7 +122,7 @@ var app = new Vue({
       if (this.level % 3 == 0) {
         var percentage = this.character.full_life * 5 * parseInt(this.level / 3) / 100;
         console.log(percentage);
-        this.character.life = parseInt(this.character.life + ((app.character.full_life * 5) / 100) + parseInt(9/3));
+        this.character.life = parseInt(this.character.life + ((app.character.full_life * 5) / 100) + parseInt(this.level/3));
         this.character.percentage = parseInt(this.character.life * 100 / this.character.full_life)+'%';
       }
     }
