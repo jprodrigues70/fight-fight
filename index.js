@@ -18,16 +18,20 @@ function mountCharacter(max_life, char) {
 Vue.component('bar', {
   computed: {
     color() {
-      var newlife = this.who.life * 100 / this.who.full_life;
+      var newlife = this.who.life * 100 / Math.max(this.who.full_life, this.who.life);
       if (newlife < 30) return 'danger';
       if (newlife <= 50) return 'warning';
       return "success";
+    }
+    ,
+    percentage() {
+      return parseInt(this.who.life * 100 / Math.max(this.who.full_life, this.who.life)) + "%";
     }
   }
   ,
   props: ['who'],
   template: `<div class="bar" :style="{position: 'relative'}">
-      <div :class="['percentage', color]" v-bind:style="{width: who.percentage}"></div>
+      <div :class="['percentage', color]" v-bind:style="{width: percentage}"></div>
     </div>`
 })
 
@@ -46,10 +50,9 @@ var app = new Vue({
       fire_power: 2,
       resistence: 5,
       life: 25,
-      percentage: '100%',
       avatar: "imgs/characters/arch-mage/arch-mage.png"
     },
-    enemy: {percentage: '100%', name: 'Enemy'},
+    enemy: {name: 'Enemy'},
     start: false,
     step: null,
     atacking: false,
@@ -65,6 +68,7 @@ var app = new Vue({
     restart() {
       this.start = false;
       this.status = '';
+      this.level = 0;
     }
     ,
     createChar() {
@@ -111,7 +115,6 @@ var app = new Vue({
           window.requestAnimationFrame(step);
         }
       }
-
       var step = this.step;
       window.requestAnimationFrame(step);
     }
@@ -120,10 +123,7 @@ var app = new Vue({
       this.level += 1;
 
       if (this.level % 3 == 0) {
-        var percentage = this.character.full_life * 5 * parseInt(this.level / 3) / 100;
-        console.log(percentage);
         this.character.life = parseInt(this.character.life + ((app.character.full_life * 5) / 100) + parseInt(this.level/3));
-        this.character.percentage = parseInt(this.character.life * 100 / this.character.full_life)+'%';
       }
     }
     ,
@@ -132,8 +132,6 @@ var app = new Vue({
         var totalDamage = (this[attacker].strength * Math.ceil(Math.random() * 6)) - (this[enemy].armor * Math.ceil(Math.random() * 6));
         if (totalDamage > 0) {
           this[enemy].life = Math.max((this[enemy].life - totalDamage), 0);
-          var newlife = this[enemy].life * 100 / this[enemy].full_life;
-          this[enemy].percentage = newlife + '%';
         }
         if (this[enemy].life == 0) {
           this.endgame = true;
