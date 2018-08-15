@@ -35,6 +35,25 @@ Vue.component('bar', {
   template: `<div class="bar" :style="{position: 'relative'}">
       <div :class="['percentage', color]" v-bind:style="{width: percentage}"></div>
     </div>`
+});
+
+Vue.component('char-details', {
+  computed: {
+    attributes() {
+      return [
+        {title: "Força", value: this.who.strength},
+        {title: "Proteção", value: this.who.armor},
+        {title: "Habilidade", value: this.who.ability},
+        {title: "Poder de Fogo", value: this.who.fire_power},
+        {title: "Resistência", value: this.who.resistence},
+        {title: "Pontos de vida", value: this.who.life},
+      ]
+    }
+  },
+  props: ['who'],
+  template: `<details open class="text-left xs-12">
+    <p v-for="attribute of attributes">{{attribute.title}}: {{attribute.value}}</p>
+  </details>`
 })
 
 var app = new Vue({

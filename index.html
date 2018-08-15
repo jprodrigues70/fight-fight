@@ -26,12 +26,16 @@
       <div class="row">
         <div class="xs-12">
           <div class="xs-4">
-            {{character.name}}
+            <span>
+              <b>{{character.name}}</b>
+            </span>
             <bar :who="character"></bar>
             <span>Level: {{level}}</span>
           </div>
           <div class="xs-4 off-xs-4">
-            <span>{{enemy.name}}</span>
+            <span>
+              <b>{{enemy.name}}</b>
+            </span>
             <bar :who="enemy"></bar>
           </div>
         </div>
@@ -45,12 +49,7 @@
                 {{character.message}}
               </p>
             </div>
-            <p class="text-left">Força: {{character.strength}}</p>
-            <p class="text-left">Proteção: {{character.armor}}</p>
-            <p class="text-left">Habilidade: {{character.ability}}</p>
-            <p class="text-left">Poder de fogo: {{character.fire_power}}</p>
-            <p class="text-left">Resistência: {{character.resistence}}</p>
-            <p class="text-left">Life: {{character.life }}</p>
+            <char-details :who="character"></char-details>
           </div>
           <div class="right">
             <div class="xs-12">
@@ -59,12 +58,7 @@
                 {{enemy.message}}
               </p>
             </div>
-            <p class="text-right">Força: {{enemy.strength}}</p>
-            <p class="text-right">Proteção: {{enemy.armor}}</p>
-            <p class="text-right">Habilidade: {{enemy.ability}}</p>
-            <p class="text-right">Poder de fogo: {{enemy.fire_power}}</p>
-            <p class="text-right">Resistência: {{enemy.resistence}}</p>
-            <p class="text-right">Life: {{enemy.life }}</p>
+            <char-details :who="enemy" class="text-right"></char-details>
           </div>
         </div>
         <div class="xs-12">
@@ -84,27 +78,20 @@
           <input max="5" id="ability" type="number" name="ability" v-model="character.ability">
           <label for="fire_power">Poder de Fogo</label>
           <input max="5" id="fire_power" type="number" name="fire_power" v-model="character.fire_power">
-          <label for="resistence">Resistência</label>
-          <input max="5" id="resistence" type="number" name="resistence" v-model="character.resistence">
           <button type="submit" name="button" class="btn full success">Criar personagem</button>
         </form>
       </div>
     </div>
     <footer class="white container">
-      <!-- Place this tag where you want the button to render. -->
       <p class="align-middle">
         <span>
           Desenvolvido por:
         </span>
         <a  class="github-button" href="https://github.com/jprodrigues70" aria-label="Follow @jprodrigues70 on GitHub">@jprodrigues70</a>
       </p>
-      <!-- Place this tag where you want the button to render. -->
       <a class="github-button" href="https://github.com/jprodrigues70/fight-fight/subscription" data-icon="octicon-eye" aria-label="Watch jprodrigues70/fight-fight on GitHub">Watch</a>
-      <!-- Place this tag where you want the button to render. -->
       <a class="github-button" href="https://github.com/jprodrigues70/fight-fight" data-icon="octicon-star" aria-label="Star jprodrigues70/fight-fight on GitHub">Star</a>
-      <!-- Place this tag where you want the button to render. -->
       <a class="github-button" href="https://github.com/jprodrigues70/fight-fight/fork" data-icon="octicon-repo-forked" aria-label="Fork jprodrigues70/fight-fight on GitHub">Fork</a>
-      <!-- Place this tag where you want the button to render. -->
       <a class="github-button" href="https://github.com/jprodrigues70/fight-fight/issues" data-icon="octicon-issue-opened" aria-label="Issue jprodrigues70/fight-fight on GitHub">Issue</a>
     </footer>
   </div>
