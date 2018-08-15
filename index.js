@@ -56,22 +56,21 @@ var app = new Vue({
     start: false,
     step: null,
     atacking: false,
-    endgame: false,
-    status: ''
+    endgame: false
   },
   computed: {
-    shuffle() {
+    status() {
+      return (this.character.life == 0 && this.start == true)? 'You Lose': '';
     }
   }
   ,
   methods: {
     restart() {
       this.start = false;
-      this.status = '';
-      this.level = 0;
     }
     ,
     createChar() {
+      this.level = 0;
       this.character = mountCharacter(this.max_life, this.character)
       this.start = true;
       this.createEnemy();
@@ -121,7 +120,6 @@ var app = new Vue({
     ,
     levelUp() {
       this.level += 1;
-
       if (this.level % 3 == 0) {
         this.character.life = parseInt(this.character.life + ((app.character.full_life * 5) / 100) + parseInt(this.level/3));
       }
@@ -139,7 +137,6 @@ var app = new Vue({
             setTimeout(() => this.createEnemy(), 800);
             this.levelUp();
           }
-          else this.status = "You Lose"
         }
       }
     }
