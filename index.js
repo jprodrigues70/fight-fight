@@ -11,7 +11,8 @@ function mountCharacter(max_life, char) {
     color: 'success',
     resistence,
     life,
-    full_life: life
+    full_life: life,
+    damage: false
   };
 }
 
@@ -130,6 +131,8 @@ var app = new Vue({
         var totalDamage = (this[attacker].strength * Math.ceil(Math.random() * 6)) - (this[enemy].armor * Math.ceil(Math.random() * 6));
         if (totalDamage > 0) {
           this[enemy].life = Math.max((this[enemy].life - totalDamage), 0);
+          this[enemy].damage = true;
+          setTimeout(() => this[enemy].damage = false, 250);
         }
         if (this[enemy].life == 0) {
           this.endgame = true;

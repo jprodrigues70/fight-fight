@@ -36,6 +36,31 @@
           </div>
         </div>
       </div>
+      <div v-if="start" class="medium center margin-top fix-height row">
+        <div class="xs-12">
+          <div class="left">
+            <img id="character" :class="[{ damage: character.damage }, 'person left']" :src="character.avatar" >
+            <p class="text-left">Força: {{character.strength}}</p>
+            <p class="text-left">Proteção: {{character.armor}}</p>
+            <p class="text-left">Habilidade: {{character.ability}}</p>
+            <p class="text-left">Poder de fogo: {{character.fire_power}}</p>
+            <p class="text-left">Resistência: {{character.resistence}}</p>
+            <p class="text-left">Life: {{character.life }}</p>
+          </div>
+          <div class="right">
+            <img id="enemy" :class="[{ damage: enemy.damage }, 'person right enemy']" :src="enemy.avatar" >
+            <p class="text-right">Força: {{enemy.strength}}</p>
+            <p class="text-right">Proteção: {{enemy.armor}}</p>
+            <p class="text-right">Habilidade: {{enemy.ability}}</p>
+            <p class="text-right">Poder de fogo: {{enemy.fire_power}}</p>
+            <p class="text-right">Resistência: {{enemy.resistence}}</p>
+            <p class="text-right">Life: {{enemy.life }}</p>
+          </div>
+        </div>
+        <div class="xs-12">
+          <button type="button" name="button" class="btn info lg" @click="fight" :disabled="atacking || endgame">Fight</button>
+        </div>
+      </div>
       <div v-if="!start" class="gt-form center">
         <h3>Monte seu personagem</h3>
         <form action="index.html" method="post" v-on:submit.prevent="createChar">
@@ -53,31 +78,6 @@
           <input max="5" id="resistence" type="number" name="resistence" v-model="character.resistence">
           <button type="submit" name="button" class="btn full success">Criar personagem</button>
         </form>
-      </div>
-      <div v-if="start" class="medium center margin-top fix-height row">
-        <div class="xs-12">
-          <div class="left">
-            <img :id="character" :class="'person left'" :src="character.avatar" >
-            <p class="text-left">Força: {{character.strength}}</p>
-            <p class="text-left">Proteção: {{character.armor}}</p>
-            <p class="text-left">Habilidade: {{character.ability}}</p>
-            <p class="text-left">Poder de fogo: {{character.fire_power}}</p>
-            <p class="text-left">Resistência: {{character.resistence}}</p>
-            <p class="text-left">Life: {{character.life }}</p>
-          </div>
-          <div class="right">
-            <img :id="enemy" :class="'person right enemy'" :src="enemy.avatar" >
-            <p class="text-right">Força: {{enemy.strength}}</p>
-            <p class="text-right">Proteção: {{enemy.armor}}</p>
-            <p class="text-right">Habilidade: {{enemy.ability}}</p>
-            <p class="text-right">Poder de fogo: {{enemy.fire_power}}</p>
-            <p class="text-right">Resistência: {{enemy.resistence}}</p>
-            <p class="text-right">Life: {{enemy.life }}</p>
-          </div>
-        </div>
-        <div class="xs-12">
-          <button type="button" name="button" class="btn info lg" @click="fight" :disabled="atacking || endgame">Fight</button>
-        </div>
       </div>
     </div>
   </div>

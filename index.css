@@ -17,3 +17,6 @@
 .game-info h3 {
   margin-bottom: 0;
 }
+.damage {
+  opacity: 0.4;
+}
