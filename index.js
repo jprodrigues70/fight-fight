@@ -15,12 +15,29 @@ function mountCharacter(max_life, char) {
   };
 }
 
+Vue.component('bar', {
+  computed: {
+    color() {
+      var newlife = this.who.life * 100 / this.who.full_life;
+      if (newlife < 30) return 'danger';
+      if (newlife <= 50) return 'warning';
+      return "success";
+    }
+  }
+  ,
+  props: ['who'],
+  template: `<div class="bar" :style="{position: 'relative'}">
+      <div :class="['percentage', color]" v-bind:style="{width: who.percentage}"></div>
+    </div>`
+})
+
 var app = new Vue({
   el: '#app',
   data: {
     bg: '',
     title: "Fight fight fight",
     max_life: 20,
+    level: 0,
     character: {
       name: "You",
       strength: 5,
@@ -47,7 +64,7 @@ var app = new Vue({
   methods: {
     restart() {
       this.start = false;
-      this.status = '';  
+      this.status = '';
     }
     ,
     createChar() {
@@ -99,19 +116,31 @@ var app = new Vue({
       window.requestAnimationFrame(step);
     }
     ,
+    levelUp() {
+      this.level += 1;
+
+      if (this.level % 3 == 0) {
+        var percentage = this.character.full_life * 5 * parseInt(this.level / 3) / 100;
+        console.log(percentage);
+        this.character.life = parseInt(this.character.life + ((app.character.full_life * 5) / 100) + parseInt(9/3));
+        this.character.percentage = parseInt(this.character.life * 100 / this.character.full_life)+'%';
+      }
+    }
+    ,
     attack(attacker, enemy) {
       if (this[attacker].life > 0 && this[enemy].life > 0) {
         var totalDamage = (this[attacker].strength * Math.ceil(Math.random() * 6)) - (this[enemy].armor * Math.ceil(Math.random() * 6));
         if (totalDamage > 0) {
           this[enemy].life = Math.max((this[enemy].life - totalDamage), 0);
           var newlife = this[enemy].life * 100 / this[enemy].full_life;
-          if (newlife <= 50) this[enemy].color = 'warning';
-          if (newlife < 30) this[enemy].color = 'danger';
           this[enemy].percentage = newlife + '%';
         }
         if (this[enemy].life == 0) {
           this.endgame = true;
-          if (enemy == "enemy") setTimeout(() => this.createEnemy(), 500);
+          if (enemy == "enemy") {
+            setTimeout(() => this.createEnemy(), 800);
+            this.levelUp();
+          }
           else this.status = "You Lose"
         }
       }
