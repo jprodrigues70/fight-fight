@@ -12,7 +12,8 @@ function mountCharacter(max_life, char) {
     resistence,
     life,
     full_life: life,
-    damage: false
+    damage: false,
+    message: ""
   };
 }
 
@@ -133,6 +134,9 @@ var app = new Vue({
           this[enemy].life = Math.max((this[enemy].life - totalDamage), 0);
           this[enemy].damage = true;
           setTimeout(() => this[enemy].damage = false, 250);
+        } else {
+          this[enemy].message = "Bela esquiva!"
+          setTimeout(() => this[enemy].message = "", 500);
         }
         if (this[enemy].life == 0) {
           this.endgame = true;

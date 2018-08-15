@@ -39,7 +39,12 @@
       <div v-if="start" class="medium center margin-top fix-height row">
         <div class="xs-12">
           <div class="left">
-            <img id="character" :class="[{ damage: character.damage }, 'person left']" :src="character.avatar" >
+            <div class="xs-12">
+              <img id="character" :class="[{ damage: character.damage }, 'person left']" :src="character.avatar" >
+              <p class="left">
+                {{character.message}}
+              </p>
+            </div>
             <p class="text-left">Força: {{character.strength}}</p>
             <p class="text-left">Proteção: {{character.armor}}</p>
             <p class="text-left">Habilidade: {{character.ability}}</p>
@@ -48,7 +53,12 @@
             <p class="text-left">Life: {{character.life }}</p>
           </div>
           <div class="right">
-            <img id="enemy" :class="[{ damage: enemy.damage }, 'person right enemy']" :src="enemy.avatar" >
+            <div class="xs-12">
+              <img id="enemy" :class="[{ damage: enemy.damage }, 'person right enemy']" :src="enemy.avatar" >
+              <p class="right">
+                {{enemy.message}}
+              </p>
+            </div>
             <p class="text-right">Força: {{enemy.strength}}</p>
             <p class="text-right">Proteção: {{enemy.armor}}</p>
             <p class="text-right">Habilidade: {{enemy.ability}}</p>
