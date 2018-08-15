@@ -20,3 +20,6 @@
 .damage {
   opacity: 0.4;
 }
+.align-middle > * {
+  vertical-align: middle;
+}

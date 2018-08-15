@@ -6,7 +6,7 @@
   <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 </head>
 <body>
-  <div id="app" v-bind:class="'gt-section info text-center vertical-full'">
+  <div id="app" v-bind:class="'gt-section info text-center'">
     <div class="container full-bg white" v-bind:style="{backgroundImage: bg}">
       <h1 class="title">
         {{ title }}
@@ -90,9 +90,28 @@
         </form>
       </div>
     </div>
+    <footer class="white container">
+      <!-- Place this tag where you want the button to render. -->
+      <p class="align-middle">
+        <span>
+          Desenvolvido por:
+        </span>
+        <a  class="github-button" href="https://github.com/jprodrigues70" aria-label="Follow @jprodrigues70 on GitHub">@jprodrigues70</a>
+      </p>
+      <!-- Place this tag where you want the button to render. -->
+      <a class="github-button" href="https://github.com/jprodrigues70/fight-fight/subscription" data-icon="octicon-eye" aria-label="Watch jprodrigues70/fight-fight on GitHub">Watch</a>
+      <!-- Place this tag where you want the button to render. -->
+      <a class="github-button" href="https://github.com/jprodrigues70/fight-fight" data-icon="octicon-star" aria-label="Star jprodrigues70/fight-fight on GitHub">Star</a>
+      <!-- Place this tag where you want the button to render. -->
+      <a class="github-button" href="https://github.com/jprodrigues70/fight-fight/fork" data-icon="octicon-repo-forked" aria-label="Fork jprodrigues70/fight-fight on GitHub">Fork</a>
+      <!-- Place this tag where you want the button to render. -->
+      <a class="github-button" href="https://github.com/jprodrigues70/fight-fight/issues" data-icon="octicon-issue-opened" aria-label="Issue jprodrigues70/fight-fight on GitHub">Issue</a>
+    </footer>
   </div>
 
   <script src="index.js"></script>
   <script src="node_modules/gaintime/js/gaintime.min.js"></script>
+
+  <script async defer src="https://buttons.github.io/buttons.js"></script>
 </body>
 </html>
