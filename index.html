@@ -11,9 +11,15 @@
       <h1 class="title">
         {{ title }}
       </h1>
-      <h3>
-        {{status}}
-      </h3>
+      <h2 class="no-margin">
+        <small>Relaxe, você não vai vencer</small>
+      </h2>
+      <div v-if="status != ''" class="game-info">
+        <h3>
+          {{status}}
+        </h3>
+        <button type="button" name="button" class="btn danger lg" @click="restart">Novo Jogo</button>
+      </div>
       <div class="row">
         <div class="xs-12">
           <div class="xs-4">
@@ -72,7 +78,7 @@
           </div>
         </div>
         <div class="xs-12">
-          <button type="button" name="button" class="btn info " @click="fight" :disabled="atacking || endgame">Fight</button>
+          <button type="button" name="button" class="btn info lg" @click="fight" :disabled="atacking || endgame">Fight</button>
         </div>
       </div>
     </div>

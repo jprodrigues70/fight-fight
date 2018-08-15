@@ -45,6 +45,11 @@ var app = new Vue({
   }
   ,
   methods: {
+    restart() {
+      this.start = false;
+      this.status = '';  
+    }
+    ,
     createChar() {
       this.character = mountCharacter(this.max_life, this.character)
       this.start = true;
