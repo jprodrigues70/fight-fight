@@ -14,12 +14,14 @@
       <h2 class="no-margin">
         <small>Relaxe, você não vai vencer</small>
       </h2>
-      <div v-if="status != ''" class="game-info">
-        <h3>
-          {{status}}
-        </h3>
-        <button type="button" name="button" class="btn danger lg" @click="restart">Novo Jogo</button>
-      </div>
+      <transition name="fade">
+        <div v-if="status != ''" class="game-info">
+          <h3>
+            {{status}}
+          </h3>
+          <button type="button" name="button" class="btn danger lg" @click="restart">Novo Jogo</button>
+        </div>
+      </transition>
       <div class="game-info" v-if="enemy.life == 0">
         <img :src="'./imgs/game/levelup.gif'" alt="">
       </div>
