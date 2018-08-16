@@ -46,7 +46,7 @@
         <div class="xs-12">
           <div class="left">
             <div class="xs-12">
-              <img id="character" :class="[{ damage: character.damage }, 'person left']" :src="character.avatar" >
+              <img id="character" :class="[{ damage: character.damage, lose: character.life == 0 }, 'person left']" :src="character.avatar" >
               <p class="left">
                 {{character.message}}
               </p>
